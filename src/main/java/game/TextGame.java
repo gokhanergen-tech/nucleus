@@ -71,7 +71,7 @@ public class TextGame implements ILogic {
              }
            }
 
-           sceneManager.getEntitiesList().add(new Entity(sun,new Vector3f(0,0,0),new Vector3f(0,110,-100),1.5f));
+           sceneManager.getEntitiesList().add(new Entity(sun,new Vector3f(0,0,0),new Vector3f(0,1,-100),30f));
            Vector3f sunlightPosition=new Vector3f(0f,102, -100);
            Vector3f sunlightColour=new Vector3f(1,1,1);
            PointLight sunLight = new PointLight(sunlightColour,sunlightPosition,100.0f,0,0,0.2f);
