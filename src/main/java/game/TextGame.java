@@ -47,6 +47,9 @@ public class TextGame implements ILogic {
            Model model=objectLoader.loadOBJModel("/models/cube.obj");
            model.setTexture(new Texture(objectLoader.loadTexture("textures/grassblock.png")),1f);
 
+           Model sun = objectLoader.loadOBJModel("/models/sphere.obj");
+           sun.setTexture(new Texture(objectLoader.loadTexture("textures/sun.png")),1f);
+
            TerrainTexture backgroundTexture=new TerrainTexture(objectLoader.loadTexture("textures/basketball512.png"));
            TerrainTexture blueTexture=new TerrainTexture(objectLoader.loadTexture("textures/sand.png"));
            TerrainTexture redTexture=new TerrainTexture(objectLoader.loadTexture("textures/frosted_ice_0.png"));
@@ -67,6 +70,12 @@ public class TextGame implements ILogic {
                 sceneManager.getEntitiesList().add(new Entity(model,new Vector3f(0,0,0),new Vector3f(i,0,j),0.5f));
              }
            }
+
+           sceneManager.getEntitiesList().add(new Entity(sun,new Vector3f(0,0,0),new Vector3f(0,110,-100),1.5f));
+           Vector3f sunlightPosition=new Vector3f(0f,102, -100);
+           Vector3f sunlightColour=new Vector3f(1,1,1);
+           PointLight sunLight = new PointLight(sunlightColour,sunlightPosition,100.0f,0,0,0.2f);
+
            Model model1=objectLoader.loadOBJModel("/models/torch.obj");
            model1.setTexture(new Texture(objectLoader.loadTexture("textures/torch.png")));
            Entity chest=new Entity(model1,new Vector3f(0,0,0),new Vector3f(-0.5f,0.5f,-0.5f),1f);
@@ -95,7 +104,7 @@ public class TextGame implements ILogic {
            ),coneDirection,cutoff);
 
 
-           sceneManager.setPointLights(new PointLight[]{pointLight});
+           sceneManager.setPointLights(new PointLight[]{pointLight, sunLight});
            sceneManager.setSpotLights(new SpotLight[]{spotLight});
 
 
@@ -114,7 +123,7 @@ public class TextGame implements ILogic {
             cameraInc.x=1;
       if(windowManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_SHIFT))
             cameraInc.y=1;
-      if(windowManager.isKeyPressed(GLFW.GLFW_KEY_RIGHT_CONTROL))
+      if(windowManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_CONTROL))
             cameraInc.y=-1;
       //pointLight.setPosition(camera.getPosition());
 
