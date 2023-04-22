@@ -112,9 +112,9 @@ public class TextGame implements ILogic {
             cameraInc.x=-1;
       if(windowManager.isKeyPressed(GLFW.GLFW_KEY_D))
             cameraInc.x=1;
-      if(windowManager.isKeyPressed(GLFW.GLFW_KEY_X))
+      if(windowManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_SHIFT))
             cameraInc.y=1;
-      if(windowManager.isKeyPressed(GLFW.GLFW_KEY_Z))
+      if(windowManager.isKeyPressed(GLFW.GLFW_KEY_RIGHT_CONTROL))
             cameraInc.y=-1;
       //pointLight.setPosition(camera.getPosition());
 
