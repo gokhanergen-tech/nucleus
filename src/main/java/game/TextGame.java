@@ -1,6 +1,9 @@
 package game;
 
-import core.*;
+import core.Camera;
+import core.MouseInput;
+import core.ObjectLoader;
+import core.WindowManager;
 import core.icore.ILogic;
 import core.lighting.DirectionalLight;
 import core.lighting.PointLight;
@@ -17,6 +20,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import utils.Consts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,75 +36,120 @@ public class TextGame implements ILogic {
     private Vector3f cameraInc;
 
 
-    public TextGame(){
-        renderManager=new RenderManager();
-        objectLoader=new ObjectLoader();
-        windowManager=Launcher.getWindowManager();
-        sceneManager=new SceneManager(-90);
-        camera=new Camera();
-        cameraInc=new Vector3f(0,0,0);
+    public TextGame() {
+        renderManager = new RenderManager();
+        objectLoader = new ObjectLoader();
+        windowManager = Launcher.getWindowManager();
+        sceneManager = new SceneManager(-90);
+        camera = new Camera();
+        cameraInc = new Vector3f(0, 0, 0);
     }
+
+    public List<Entity> loadHouses() throws Exception {
+        Model model = objectLoader.loadOBJModel("house", "src/main/resources/models/house/Farmhouse_OBJ.obj");
+        List<Entity> entities = new ArrayList<>();
+        final Texture texture = new Texture(objectLoader.loadTexture("textures/house/Farmhouse_Texture.jpg"));
+        try {
+            model.getMaterialList().forEach(material -> {
+                material.getMeshList().forEach(model1 -> {
+                    try {
+                        model1.setTexture(texture, 1f);
+                        entities.add(new Entity(model1, new Vector3f(0, 0, 0), new Vector3f(0, 0.5f, 0), 1f));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            });
+            model.getMaterialList().forEach(material -> {
+                material.getMeshList().forEach(model1 -> {
+                    try {
+                        model1.setTexture(texture, 1f);
+                        entities.add(new Entity(model1, new Vector3f(0, 0, 0), new Vector3f(-50, 0.5f, 0), 1f));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return entities;
+
+    }
+
     @Override
     public void init() throws Exception {
-           renderManager.init();
+        renderManager.init();
+        sceneManager.getEntitiesList().addAll(loadHouses());
+        Model model = objectLoader.loadOBJModel("/models/cube.obj");
+        model.setTexture(new Texture(objectLoader.loadTexture("textures/grassblock.png")), 1f);
 
-           Model model=objectLoader.loadOBJModel("/models/cube.obj");
-           model.setTexture(new Texture(objectLoader.loadTexture("textures/grassblock.png")),1f);
+        Model sun = objectLoader.loadOBJModel("mountain", "src/main/resources/models/sphere.obj");
 
-           Model sun = objectLoader.loadOBJModel("/models/sphere.obj");
-           sun.setTexture(new Texture(objectLoader.loadTexture("textures/sun.png")),1f);
 
-           TerrainTexture backgroundTexture=new TerrainTexture(objectLoader.loadTexture("textures/basketball512.png"));
-           TerrainTexture blueTexture=new TerrainTexture(objectLoader.loadTexture("textures/sand.png"));
-           TerrainTexture redTexture=new TerrainTexture(objectLoader.loadTexture("textures/frosted_ice_0.png"));
-           TerrainTexture greenTexture=new TerrainTexture(objectLoader.loadTexture("textures/cobblestone.png"));
-           TerrainTexture blendMap=new TerrainTexture(objectLoader.loadTexture("textures/blendMap.png"));
+        TerrainTexture backgroundTexture = new TerrainTexture(objectLoader.loadTexture("textures/basketball512.png"));
+        TerrainTexture blueTexture = new TerrainTexture(objectLoader.loadTexture("textures/sand.png"));
+        TerrainTexture redTexture = new TerrainTexture(objectLoader.loadTexture("textures/frosted_ice_0.png"));
+        TerrainTexture greenTexture = new TerrainTexture(objectLoader.loadTexture("textures/cobblestone.png"));
+        TerrainTexture blendMap = new TerrainTexture(objectLoader.loadTexture("textures/blendMap.png"));
 
-           BlendMapTerrain blendMapTerrain=new BlendMapTerrain(backgroundTexture,redTexture,greenTexture,blueTexture);
-           Terrain terrain=new Terrain(new Vector3f(0,-1,-800),objectLoader,
-                   new Material(new Vector4f(0f,0f,0f,0f),0.1f),blendMapTerrain,blendMap);
+        BlendMapTerrain blendMapTerrain = new BlendMapTerrain(backgroundTexture, redTexture, greenTexture, blueTexture);
+        Terrain terrain = new Terrain(new Vector3f(0, -1, -800), objectLoader,
+                new Material(new Vector4f(0f, 0f, 0f, 0f), 0.1f), blendMapTerrain, blendMap);
 
-           Terrain terrain2=new Terrain(new Vector3f(-800,-1,-800),objectLoader,
-                   new Material(new Vector4f(0,0,0,0),0.1f),blendMapTerrain,blendMap);
 
-           sceneManager.getTerrainList().addAll(List.of(terrain,terrain2));
+        sceneManager.getTerrainList().addAll(List.of(terrain));
 
-           for(int i=-5;i<6;i++){
-             for(int j=-5;j<6;j++){
-                sceneManager.getEntitiesList().add(new Entity(model,new Vector3f(0,0,0),new Vector3f(i,0,j),0.5f));
-             }
-           }
+        for (int i = -50; i < 51; i++) {
+            for (int j = -50; j < 51; j++) {
+                sceneManager.getEntitiesList().add(new Entity(model, new Vector3f(0, 0, 0), new Vector3f(i, 0, j), 0.5f));
+            }
+        }
 
-           sceneManager.getEntitiesList().add(new Entity(sun,new Vector3f(0,0,0),new Vector3f(0,1,-100),30f));
-           Vector3f sunlightPosition=new Vector3f(0f,102, -100);
-           Vector3f sunlightColour=new Vector3f(1,1,1);
-           PointLight sunLight = new PointLight(sunlightColour,sunlightPosition,100.0f,0,0,0.2f);
 
-           Model model1=objectLoader.loadOBJModel("/models/torch.obj");
-           model1.setTexture(new Texture(objectLoader.loadTexture("textures/torch.png")));
-           Entity chest=new Entity(model1,new Vector3f(0,0,0),new Vector3f(-0.5f,0.5f,-0.5f),1f);
+        sun.getMaterialList().forEach(material -> {
+            material.getMeshList().forEach(model1 -> {
+                try {
+                    model1.setTexture(new Texture(objectLoader.loadTexture("textures/sand.png")), 1);
+                    sceneManager.getEntitiesList().add(new Entity(model1, new Vector3f(0, 0, 0), new Vector3f(400, -5, -400), 50f));
 
-           sceneManager.getEntitiesList().add(chest);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
-           float lightIntensity=100.0f;
+        });
+        Vector3f sunlightPosition = new Vector3f(50f, 20, -100);
+        Vector3f sunlightColour = new Vector3f(1, 1, 1);
+        PointLight sunLight = new PointLight(sunlightColour, sunlightPosition, 100.0f, 0, 0, 0.2f);
+
+        Model model1 = objectLoader.loadOBJModel("/models/torch.obj");
+        model1.setTexture(new Texture(objectLoader.loadTexture("textures/torch.png")));
+        Entity chest = new Entity(model1, new Vector3f(0, 0, 0), new Vector3f(-0.5f, 0.5f, -0.5f), 1f);
+
+        sceneManager.getEntitiesList().add(chest);
+
+        float lightIntensity = 100.0f;
            //point light
            Vector3f lightPosition=new Vector3f(0f,10.2f,0f);
            Vector3f lightColour=new Vector3f(1,1,1);
            PointLight pointLight=new PointLight(lightColour,lightPosition,lightIntensity,0,0,1f);
 
            //directional light
-           lightPosition=new Vector3f(-1,100,0);
-           lightColour=new Vector3f(1,1,1);
+        lightPosition = new Vector3f(0, 100, -400);
+        lightColour = new Vector3f(1, 1, 1);
            sceneManager.setDirectionalLight(new DirectionalLight(lightColour,lightPosition,lightIntensity));
 
            //spot light
-               Vector3f coneDirection = new Vector3f(0,-1f,0);
-           float cutoff=(float)Math.cos(Math.toRadians(180));
+        Vector3f coneDirection = new Vector3f(25, 0f, 25);
+        float cutoff = (float) Math.cos(Math.toRadians(180));
 
            SpotLight spotLight=new SpotLight(new PointLight(
                    lightColour,
-                   new Vector3f(50,3.2f,50),
-                   lightIntensity,0,0,0.2f
+                   new Vector3f(25, 3f, 25),
+                   lightIntensity, 0, 0, 0.2f
            ),coneDirection,cutoff);
 
 
@@ -157,13 +206,13 @@ public class TextGame implements ILogic {
       coneDir.x=(float)Math.sin(spotAngleRad);
       //entity.incRotation(0.0f,0.25f,0.0f);
 
-      sceneManager.incLightAngle(2f);
+        sceneManager.incLightAngle(0.4f);
       float lightAngle=sceneManager.getLightAngle();
       DirectionalLight directionalLight=sceneManager.getDirectionalLight();
       if(lightAngle>90){
           directionalLight.setIntensity(0);
           if(lightAngle>=360){
-              sceneManager.setLightAngle(-90);
+              lightAngle = -90;
           }
       }else if(lightAngle<=-80 || lightAngle>=80){
           float factor=1-(Math.abs(lightAngle)-80)/10.0f;
@@ -172,18 +221,23 @@ public class TextGame implements ILogic {
           directionalLight.getColor().z=Math.max(factor,0.5f);
       }else{
           directionalLight.setIntensity(1);
-          directionalLight.getColor().x=1;
-          directionalLight.getColor().z=1;
-          directionalLight.getColor().y=1;
+          directionalLight.getColor().x = 1;
+          directionalLight.getColor().z = 1;
+          directionalLight.getColor().y = 1;
       }
-      double angleRad=Math.toRadians(lightAngle);
-      directionalLight.getDirection().x=(float) Math.sin(angleRad);
-      directionalLight.getDirection().y=(float) Math.cos(angleRad);
+        double angleRad = Math.toRadians(lightAngle);
+        directionalLight.getDirection().x = (float) Math.sin(angleRad);
+        directionalLight.getDirection().y = (float) Math.cos(angleRad);
 
-      for(Entity entity:sceneManager.getEntitiesList())
-          renderManager.processEntity(entity);
-      for (Terrain terrain:sceneManager.getTerrainList())
-          renderManager.processTerrain(terrain);
+        for (Terrain terrain : sceneManager.getTerrainList()) {
+            if (RenderManager.isCloseToZFar(terrain.getPosition(), camera.getPosition(),1))
+                renderManager.processTerrain(terrain);
+        }
+        for (Entity entity : sceneManager.getEntitiesList()) {
+            if (RenderManager.isCloseToZFar(entity.getPosition(), camera.getPosition(),0.8f))
+                renderManager.processEntity(entity);
+        }
+
 
     }
 

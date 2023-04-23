@@ -1,27 +1,27 @@
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\ShaderManager.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\EngineManager.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\rendering\TerrainRenderer.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\icore\ILogic.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\utils\Utils.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\lighting\SpotLight.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\terrain\TerrainTexture.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\Entity.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\WindowManager.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\lighting\PointLight.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\terrain\Terrain.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\utils\Transformation.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\rendering\IRenderer.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\Texture.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\ObjectLoader.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\Model.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\lighting\DirectionalLight.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\rendering\RenderManager.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\game\Launcher.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\Material.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\SceneManager.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\Camera.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\MouseInput.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\rendering\EntityRenderer.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\utils\Consts.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\core\models\terrain\BlendMapTerrain.java
-D:\SoftwareApplications\lwjgl-game-engine-java\src\main\java\game\TextGame.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\EngineManager.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\icore\ILogic.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\rendering\RenderManager.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\Model.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\terrain\BlendMapTerrain.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\ObjectLoader.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\ShaderManager.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\Camera.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\MouseInput.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\utils\Utils.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\Entity.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\WindowManager.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\rendering\TerrainRenderer.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\terrain\Terrain.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\lighting\PointLight.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\rendering\IRenderer.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\game\Launcher.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\SceneManager.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\utils\Consts.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\lighting\SpotLight.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\rendering\EntityRenderer.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\utils\Transformation.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\game\TextGame.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\Material.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\lighting\DirectionalLight.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\terrain\TerrainTexture.java
+C:\Users\Gökhan ERGEN\Desktop\Files\lwjgl-basic-1\src\main\java\core\models\Texture.java

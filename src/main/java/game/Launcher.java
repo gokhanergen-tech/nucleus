@@ -11,6 +11,7 @@ public class Launcher {
         return windowManager;
     }
     private static TextGame textGame;
+
     public static void main(String[] args){
 
         windowManager=new WindowManager(Consts.TITLE,1300,600,false);

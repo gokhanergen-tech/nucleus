@@ -3,19 +3,26 @@ package core.models;
 import org.joml.Vector4f;
 import utils.Consts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Material {
-    private Vector4f ambientColor,diffuseColor,specularColor;
+    public static final Vector4f DEFAULT_COLOR = new Vector4f(0, 1, 0, 1);
     private float reflectance;
     private Texture texture;
     private boolean disableCulling;
+    private Vector4f ambientColor, diffuseColor, specularColor;
+    private List<Model> modelList;
+    private String texturePath;
 
     public Material() {
         this.ambientColor = Consts.DEFAULT_COLOR;
         this.diffuseColor = Consts.DEFAULT_COLOR;
         this.specularColor = Consts.DEFAULT_COLOR;
         this.reflectance = 0;
-        this.disableCulling=false;
+        this.disableCulling = false;
         this.texture = null;
+        this.modelList = new ArrayList<>();
     }
 
     public Material(Texture texture){
@@ -26,14 +33,20 @@ public class Material {
         this(Consts.DEFAULT_COLOR,Consts.DEFAULT_COLOR,Consts.DEFAULT_COLOR,reflectance,texture);
     }
 
-    public Material(Vector4f colour,float reflectance) {
-        this(colour,colour,colour,reflectance,null);
-
+    public Material(Vector4f colour, float reflectance) {
+        this(colour, colour, colour, reflectance, null);
     }
 
-    public Material(Vector4f colour,float reflectance,Texture texture) {
-        this(colour,colour,colour,reflectance,texture);
+    public Material(Vector4f colour, float reflectance, Texture texture) {
+        this(colour, colour, colour, reflectance, texture);
+    }
 
+    public String getTexturePath() {
+        return texturePath;
+    }
+
+    public void setTexturePath(String texturePath) {
+        this.texturePath = texturePath;
     }
 
     public Material(Vector4f ambientColor, Vector4f diffuseColor, Vector4f specularColor, float reflectance, Texture texture) {
@@ -92,7 +105,15 @@ public class Material {
         this.disableCulling = disableCulling;
     }
 
-    public boolean hasTexture(){
-        return texture!=null;
+    public boolean hasTexture() {
+        return texture != null;
+    }
+
+    public List<Model> getMeshList() {
+        return modelList;
+    }
+
+    public void setMeshList(List<Model> meshList) {
+        this.modelList = meshList;
     }
 }
