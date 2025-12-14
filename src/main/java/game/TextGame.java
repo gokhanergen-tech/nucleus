@@ -25,9 +25,6 @@ import java.util.List;
 
 
 public class TextGame implements ILogic {
-
-
-
     private final RenderManager renderManager;
     private final ObjectLoader objectLoader;
     private final WindowManager windowManager;
@@ -100,10 +97,18 @@ public class TextGame implements ILogic {
                 new Material(new Vector4f(0f, 0f, 0f, 0f), 0.1f), blendMapTerrain, blendMap);
 
 
-        sceneManager.getTerrainList().addAll(List.of(terrain));
+        TerrainTexture testMap = new TerrainTexture(objectLoader.loadTexture("textures/test.png"));
+        BlendMapTerrain testBlendMap = new BlendMapTerrain(backgroundTexture, redTexture, greenTexture, blueTexture);
 
-        for (int i = -50; i < 51; i++) {
-            for (int j = -50; j < 51; j++) {
+        Terrain testTerrain = new Terrain(new Vector3f(0, 100, -800), objectLoader,
+                new Material(new Vector4f(0f, 0f, 0f, 0f), 0.1f), testBlendMap, testMap);
+
+
+
+        sceneManager.getTerrainList().addAll(List.of(terrain,testTerrain));
+
+        for (int i = -100; i < 100; i++) {
+            for (int j = -100; j < 100; j++) {
                 sceneManager.getEntitiesList().add(new Entity(model, new Vector3f(0, 0, 0), new Vector3f(i, 0, j), 0.5f));
             }
         }
@@ -125,11 +130,6 @@ public class TextGame implements ILogic {
         Vector3f sunlightColour = new Vector3f(1, 1, 1);
         PointLight sunLight = new PointLight(sunlightColour, sunlightPosition, 100.0f, 0, 0, 0.2f);
 
-        Model model1 = objectLoader.loadOBJModel("/models/torch.obj");
-        model1.setTexture(new Texture(objectLoader.loadTexture("textures/torch.png")));
-        Entity chest = new Entity(model1, new Vector3f(0, 0, 0), new Vector3f(-0.5f, 0.5f, -0.5f), 1f);
-
-        sceneManager.getEntitiesList().add(chest);
 
         float lightIntensity = 100.0f;
            //point light
