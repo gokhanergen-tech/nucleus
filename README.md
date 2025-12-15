@@ -1,47 +1,52 @@
-# LWJGL Game Engine Project
+# Nucleus Engine
+### Lightweight 3D Game Engine built with LWJGL
 
-A lightweight 3D game engine built in Java using **LWJGL 3 (Lightweight Java Game Library)**.  
-Supports advanced lighting, terrain textures (BlendMap), 3D models (OBJ), and flexible input handling.
+**Nucleus** is a lightweight, modular **3D game engine** written in **Java** using  
+**LWJGL 3 (Lightweight Java Game Library)**.
+
+The engine focuses on performance, clean architecture, and flexibility, while
+providing essential modern 3D features such as dynamic lighting, terrain blending,
+and model loading.
 
 ---
 
-## Features
+## ✨ Features
 
-### Lighting
-- **Directional Light** – simulates sunlight
-- **Spot Light** – focused cone lights
-- **Point Light** – omni-directional light sources
-- Real-time dynamic lighting and color control
+### 💡 Lighting System
+- Directional Light (sun-like lighting)
+- Point Light (omni-directional)
+- Spot Light (cone-based lighting)
+- Real-time dynamic lighting
+- Adjustable color & intensity
 
-### Terrain & Textures
-- **BlendMap support** for multiple terrain textures
-- Smooth transitions for realistic landscapes
-- Heightmap-based terrain generation
+### 🏔️ Terrain & Textures
+- BlendMap support for multi-textured terrain
+- Optimized terrain rendering
 
-### 3D Models
-- Load **OBJ models** with textures
-- Multiple models supported simultaneously
-- Easily integrate custom models
+### 📦 3D Model Support
+- OBJ model loading with textures
+- Easy custom model integration
 
-### Input & Controls
-- Keyboard: WASD / Arrow keys
-- Mouse: Camera rotation
-- Adjustable camera speed and sensitivity
+### 🎮 Input & Camera
+- Keyboard input
+- Mouse-controlled camera rotation
+- Adjustable movement speed & sensitivity
 
-### Audio & GUI (Extra Features)
-- Basic 3D sound support
+### 🔊 Audio & GUI (Extras)
+- Basic 3D audio support
 - Simple HUD / GUI rendering system
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-![Açıklayıcı Alternatif Metin](./screenshots/example.png)
+![Engine Screenshot](./screenshots/example.png)
 
 ### Prerequisites
-- Java 11+ (project is configured for Java 11)
+- Java 11 or newer
 - Maven
+- OpenGL compatible GPU
 
-### Compile and Run
+### Build & Run
 ```bash
 mvn clean compile exec:java
