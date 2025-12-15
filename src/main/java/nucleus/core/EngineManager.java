@@ -1,6 +1,6 @@
 package nucleus.core;
 
-import nucleus.core.icore.ILogic;
+import nucleus.NucleusGame;
 import nucleus.utils.Consts;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -18,19 +18,19 @@ public class EngineManager {
     private GLFWErrorCallback errorCallback;
     private MouseInput mouseInput;
 
-    private ILogic iLogic;
-    public void init(ILogic iLogic, WindowManager windowManager) throws Exception{
+    private NucleusGame nucleusGame;
+    public void init(NucleusGame nucleusGame, WindowManager windowManager) throws Exception{
         GLFW.glfwSetErrorCallback(errorCallback=GLFWErrorCallback.createPrint(System.err));
 
         this.windowManager=windowManager;
-        this.iLogic=iLogic;
+        this.nucleusGame=nucleusGame;
 
         mouseInput=new MouseInput();
         windowManager.init();
-        iLogic.init(windowManager);
+        nucleusGame.init(windowManager);
         mouseInput.init();
     }
-    public void start(ILogic iLogic, WindowManager windowManager) throws Exception{
+    public void start(NucleusGame iLogic, WindowManager windowManager) throws Exception{
         init(iLogic,windowManager);
         if(isRunning)
             return;
@@ -60,7 +60,7 @@ public class EngineManager {
                 }
                 if(frameCounter>=NANOSCOND){
                     setFps(frames);
-                    windowManager.setTitle(Consts.TITLE+" "+getFps()+" fps");
+                    windowManager.setTitle(nucleusGame.getTitle()+" "+getFps()+" fps");
                     frames=0;
                     frameCounter=0;
                 }
@@ -91,19 +91,19 @@ public class EngineManager {
     }
     private void input(){
         mouseInput.input();
-        iLogic.input();
+        nucleusGame.input();
     }
     private void update(float interval){
-       iLogic.update(interval,mouseInput);
+       nucleusGame.update(interval,mouseInput);
     }
     private void render(){
-        iLogic.render();
+        nucleusGame.render();
         windowManager.update();
 
     }
     private void cleanup(){
         windowManager.cleanup();
-        iLogic.cleanup();
+        nucleusGame.cleanup();
         errorCallback.free();
         GLFW.glfwTerminate();
     }

@@ -1,10 +1,10 @@
 package game;
 
+import nucleus.NucleusGame;
 import nucleus.core.Camera;
 import nucleus.core.MouseInput;
 import nucleus.core.ObjectLoader;
 import nucleus.core.WindowManager;
-import nucleus.core.icore.ILogic;
 import nucleus.core.lighting.DirectionalLight;
 import nucleus.core.lighting.PointLight;
 import nucleus.core.lighting.SpotLight;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ExampleGame implements ILogic {
+public class ExampleGame extends NucleusGame {
     private final RenderManager renderManager;
     private final ObjectLoader objectLoader;
     private WindowManager windowManager;
@@ -33,7 +33,8 @@ public class ExampleGame implements ILogic {
     private Vector3f cameraInc;
 
 
-    public ExampleGame() {
+    public ExampleGame(String title, int width, int height) {
+        super(width,height,title);
         renderManager = new RenderManager();
         objectLoader = new ObjectLoader();
         sceneManager = new SceneManager(-90);

@@ -2,8 +2,6 @@ package nucleus;
 
 import nucleus.core.EngineManager;
 import nucleus.core.WindowManager;
-import nucleus.core.icore.ILogic;
-import nucleus.utils.Consts;
 
 public class NucleusApp {
     private static WindowManager windowManager;
@@ -17,8 +15,8 @@ public class NucleusApp {
         throw new RuntimeException("Not Initialized App");
     }
 
-    public static void start(ILogic textGame) {
-        windowManager=new WindowManager(Consts.TITLE,1300,600,false);
+    public static void start(NucleusGame textGame) {
+        windowManager=new WindowManager(textGame.getTitle(), textGame.getWidth(), textGame.getHeight(), false);
 
         EngineManager engineManager=new EngineManager();
         try {
