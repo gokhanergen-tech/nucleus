@@ -48,8 +48,8 @@ and model loading.
 - OpenGL compatible GPU
 
 ###  To learn LWJGL:
-- https://www.youtube.com/watch?v=XfjmLP_PSsQ&list=PL4QbKfRYvHvSJSVgHawYIvcIA0CcgnMzw
-- https://www.lwjgl.org/
+- https://www.youtube.com/watch?v=XfjmLP_PSsQ&list=PL4QbKfRYvHvSJSVgHawYIvcIA0CcgnMzw I inspired from this video series. 
+- https://www.lwjgl.org/ 
 
 ### Build & Run
 ```bash
