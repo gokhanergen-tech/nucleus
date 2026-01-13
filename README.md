@@ -47,9 +47,11 @@ and model loading.
 - Maven
 - OpenGL compatible GPU
 
+###  To learn LWJGL:
+- https://www.youtube.com/watch?v=XfjmLP_PSsQ&list=PL4QbKfRYvHvSJSVgHawYIvcIA0CcgnMzw
+- https://www.lwjgl.org/
+
 ### Build & Run
 ```bash
 mvn clean compile exec:java
 
-To learn LWJGL:
-https://www.youtube.com/watch?v=XfjmLP_PSsQ&list=PL4QbKfRYvHvSJSVgHawYIvcIA0CcgnMzw
