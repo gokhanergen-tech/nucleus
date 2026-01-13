@@ -32,10 +32,6 @@ and model loading.
 - Mouse-controlled camera rotation
 - Adjustable movement speed & sensitivity
 
-### 🔊 Audio & GUI (Extras)
-- Basic 3D audio support
-- Simple HUD / GUI rendering system
-
 ---
 
 ## 🚀 Getting Started
